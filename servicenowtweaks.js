@@ -1,3 +1,6 @@
+////////
+////////
+//Put Tooltips on Incident Creation pages
 labeltags=[
   { "labelname": "incident_state",        "labeltitle": "Same as RT" },
   { "labelname": "number",                "labeltitle": "The ID number of the incident" },
@@ -20,7 +23,7 @@ labeltags=[
   { "labelname": "urgency",               "labeltitle": "'Measure of the business criticality of based on the impact and on the business needs of the customer.' Rule of thumb:\nLow >24 hrs\nMedium <=24 hrs\nHigh<= Less than 4 hrs" },
   { "labelname": "priority",              "labeltitle": "Sequence in which the incident needs to be resolved, auto-calculated based on impact and urgency." },
   { "labelname": "assignment_group",      "labeltitle": "STC default is\n'CTS Student Technology Collaborative'\n\n(CTS stands for for Campus Technology Services)" },
-  { "labelname": "assigned_to",           "labeltitle": "Blank upon incident filing, it will be assigned later" },
+  { "labelname": "assigned_to",           "labeltitle": "The ST primarily responsible for correspondence with the student. Upon incident filing this is left blank, and it will be assigned later" },
   { "labelname": "watch_list",            "labeltitle": "The lock-icon expands to show more options.\nThe person-icon makes you a watcher" },
   { "labelname": "knowledge",             "labeltitle": "Check this if the incident contains information that should be incorporated into a knowledge article.\nIt helps to make a comment below as well." },
   { "labelname": "time_worked",           "labeltitle": "Don't worry about this stressful time-ticker, your managers aren't counting seconds" },
@@ -31,20 +34,58 @@ labeltags=[
 ]
 
 function taglabels(){
-  if (jQuery('iframe#gsft_main').length){ // if it's an iframe
-    for (var i = 0; i < labeltags.length; i++) {
-      labeltag = jQuery('iframe#gsft_main').contents().find("#label\\.incident\\." + labeltags[i]['labelname'])
-      labeltag.attr('title', labeltags[i]['labeltitle'])
-    }
-  }
-  if (!jQuery('iframe#gsft_main').length){ // if it's a standalone page
-    for (var i = 0; i < labeltags.length; i++) {
-      labeltag = jQuery("#label\\.incident\\." + labeltags[i]['labelname'])
-      labeltag.attr('title', labeltags[i]['labeltitle'])
-    }
+  for (var i = 0; i < labeltags.length; i++) {
+    labeltag = jQuery("#label\\.incident\\." + labeltags[i]['labelname'])
+    labeltag.attr('title', labeltags[i]['labeltitle'])
   }
 }
 
-jQuery(document).ready(function(){taglabels()}) //call as a standalone page
-jQuery("iframe#gsft_main").load(function(){taglabels()}) //call when navigationg within service now (which changes this particular iframe)
-//jQuery("iframe.gb_iframe").load(function(){taglabels()}) //call as a popout won't work well
+//Call it on pageload
+jQuery(document).ready(function(){taglabels()})
+
+
+
+
+////////
+////////
+//Apply STC Default Template
+jQuery(document).ready(function(){
+  //only call if we're actually creating a new ticket i.e. no user has been set
+  username = jQuery('#sys_display\\.incident\\.caller_id').attr('value')
+  if (username == "" || typeof username == "undefined"){
+    location.assign("javascript:applyTemplate('24c0fd7f2b87e040fde6a4bc59da15ed')");
+  }
+})
+
+
+
+
+
+////////
+////////
+//Watch the short description field, auto-click kbpopup button when pressing enter
+function watchshortdescription(){
+  jQuery('#incident\\.short_description').keydown(function(event){
+    if(event.keyCode == 13){ //if enter is pressed
+      //jQuery('#incident\\.short_description').parent().siblings().children().children('img').click();
+      location.assign("javascript:kbPopup('incident.short_description')");
+    }
+  })
+}
+
+//Call on pageload
+jQuery(document).ready(function(){watchshortdescription()})
+
+
+
+
+////////
+////////
+//Autocomplete triggers on paste
+//http://forum.jquery.com/topic/mouse-paste-binding-won-t-fire-jquery-ui-autocomplete-keyboard-paste-is-fine
+//
+//
+//
+
+
+
