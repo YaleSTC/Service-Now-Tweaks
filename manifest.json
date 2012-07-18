@@ -5,9 +5,9 @@
   "description": "STC-Specific modifications of Service Now.",
 
     "content_scripts": [{
-    "matches": ["https://yale.service-now.com/*"],
+    "matches": ["https://yale.service-now.com/*", "http://symbolhound.com/*"],
     "run_at": "document_end",
-    "js": ["jquery-1.7.2.min.js", "servicenowtweaks.js"],
+    "js": ["jquery-1.7.2.min.js", "servicenowtweaks.js", "servicenowdictionary.js"],
     "all_frames": true
     
   }]
