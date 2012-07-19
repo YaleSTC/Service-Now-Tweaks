@@ -590,7 +590,7 @@ sndictionary = [
   { "term": "CAB", "definition": "change advisory board " },
   { "term": "ISP", "definition": "internet service provider" },
   { "term": "CAPEX", "definition": "capital expenditure " },
-  { "term": "IT", "definition": "information technology" },
+  //{ "term": "IT", "definition": "information technology" },
   { "term": "CCM", "definition": "component capacity management " },
   { "term": "ITSCM", "definition": "IT service continuity management" },
   { "term": "CFIA", "definition": "component failure impact analysis " },
