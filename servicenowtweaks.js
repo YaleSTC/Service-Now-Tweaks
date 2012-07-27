@@ -37,7 +37,7 @@
 function taglabels(){
   for (var i = 0; i < labeltags.length; i++) {
     labeltag = jQuery("#label\\.incident\\." + labeltags[i]['labelname'])
-    labeltag.after('<td style="background-color:#DDD; vertical-align:middle; padding-left:5px; padding-right:5px;" title="' + labeltags[i]['labeltitle'] +  '"> ✵ </td>')
+    labeltag.after('<td style="background-color:#DDD; vertical-align:middle; padding-left:5px; padding-right:5px; cursor:default;" title="' + labeltags[i]['labeltitle'] +  '"> ✵ </td>')
     //labeltag.parent().children(':last-child').append('<span style="padding-left:5px;" title="' + labeltags[i]['labeltitle'] +  '">(?)</span>')
     //.append('<span style="padding-left:5px;">(?)</div>')
     //labeltag.append('<span style="float:right;" title="' + labeltags[i]['labeltitle'] +  '">(?)</span>')
