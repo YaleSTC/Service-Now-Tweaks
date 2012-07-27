@@ -58,7 +58,7 @@ function OnAnIncidentPage(){
 ////////
 //Apply STC Default Template
 function ApplyDefaultTemplate(){
-    location.assign("javascript:applyTemplate('24c0fd7f2b87e040fde6a4bc59da15ed')");
+    location.assign("javascript:applyTemplate('048063642bebe080fcb01abf59da1596')");
 }
 
 
@@ -86,6 +86,11 @@ function watchshortdescription(){
 //
 //
 
+function monospacefont(){
+  jQuery('#incident\\.description').css('font-family', 'monospace')
+  jQuery('#incident\\.description').css('padding', '10px')
+}
+
 
 //Call it on pageload
 jQuery(document).ready(function(){
@@ -96,7 +101,7 @@ jQuery(document).ready(function(){
     if (username == "" || typeof username == "undefined"){
       ApplyDefaultTemplate();
     }
-
+    monospacefont();
   }
 
 
