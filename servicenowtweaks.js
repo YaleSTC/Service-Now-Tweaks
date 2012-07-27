@@ -37,7 +37,7 @@
 function taglabels(){
   for (var i = 0; i < labeltags.length; i++) {
     labeltag = jQuery("#label\\.incident\\." + labeltags[i]['labelname'])
-    labeltag.after('<td style="background-color:#DDD; vertical-align:middle; padding-left:5px; padding-right:5px;" title="' + labeltags[i]['labeltitle'] +  '"> ? </td>')
+    labeltag.after('<td style="background-color:#DDD; vertical-align:middle; padding-left:5px; padding-right:5px;" title="' + labeltags[i]['labeltitle'] +  '"> ✵ </td>')
     //labeltag.parent().children(':last-child').append('<span style="padding-left:5px;" title="' + labeltags[i]['labeltitle'] +  '">(?)</span>')
     //.append('<span style="padding-left:5px;">(?)</div>')
     //labeltag.append('<span style="float:right;" title="' + labeltags[i]['labeltitle'] +  '">(?)</span>')
@@ -90,7 +90,6 @@ function watchshortdescription(){
 //Call it on pageload
 jQuery(document).ready(function(){
   if (OnAnIncidentPage()){
-    alert("onanincpage");
     taglabels();
     watchshortdescription();
     username = jQuery('#sys_display\\.incident\\.caller_id').attr('value');
