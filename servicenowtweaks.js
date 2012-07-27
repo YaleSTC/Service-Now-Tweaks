@@ -45,24 +45,21 @@ function taglabels(){
   }
 }
 
-//Call it on pageload
-jQuery(document).ready(function(){taglabels()})
 
 
-
+function OnAnIncidentPage(){
+  if (jQuery('h2.form_header').length > 0){
+    return jQuery('h2.form_header').contents().html().indexOf("Incident") > -1
+  }
+  else {return false}
+}
 
 ////////
 ////////
 //Apply STC Default Template
-jQuery(document).ready(function(){
-  //only call if we're actually creating a new ticket i.e. no user has been set
-  username = jQuery('#sys_display\\.incident\\.caller_id').attr('value')
-  if (username == "" || typeof username == "undefined"){
+function ApplyDefaultTemplate(){
     location.assign("javascript:applyTemplate('24c0fd7f2b87e040fde6a4bc59da15ed')");
-  }
-})
-
-
+}
 
 
 
@@ -79,9 +76,6 @@ function watchshortdescription(){
 }
 
 //Call on pageload
-jQuery(document).ready(function(){watchshortdescription()})
-
-
 
 
 ////////
@@ -93,4 +87,20 @@ jQuery(document).ready(function(){watchshortdescription()})
 //
 
 
+//Call it on pageload
+jQuery(document).ready(function(){
+  if (OnAnIncidentPage()){
+    alert("onanincpage");
+    taglabels();
+    watchshortdescription();
+    username = jQuery('#sys_display\\.incident\\.caller_id').attr('value');
+    if (username == "" || typeof username == "undefined"){
+      ApplyDefaultTemplate();
+    }
+
+  }
+
+
+
+})
 
