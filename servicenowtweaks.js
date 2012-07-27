@@ -89,6 +89,7 @@ function watchshortdescription(){
 function monospacefont(){
   jQuery('#incident\\.description').css('font-family', 'monospace')
   jQuery('#incident\\.description').css('padding', '10px')
+  jQuery('div.activity_field[name=description]').children().children().children().children('td').css('font-family', 'monospace')
 }
 
 
