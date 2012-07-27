@@ -9,8 +9,5 @@
     "run_at": "document_end",
     "js": ["jquery-1.7.2.min.js", "servicenowtweaks.js"],
     "all_frames": true
-    
   }]
-
-
 }
