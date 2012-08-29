@@ -130,7 +130,7 @@ function openwatchlist(){
   jQuery('#incident\\.watch_list_unlock').click()
 }
 
-//function moveshortdescriptionup(){
+function moveshortdescriptionup(){
   //firstrow = jQuery('#section\\.bf1d96e3c0a801640190725e63f8ac80').children('table').children('tbody').children('tr').eq(1)
   //bigtable = jQuery('#label\\.incident\\.incident_state').parent().parent().parent().parent().parent()
   //shortdescrow = jQuery('#element\\.incident\\.short_description')
@@ -144,6 +144,9 @@ function openwatchlist(){
 
   firstrow = jQuery('#section\\.bf1d96e3c0a801640190725e63f8ac80').children('table')
   shortdescrow = jQuery('#element\\.incident\\.short_description')
+  shortdescrow.wrap('<table />')
+  shortdescrow = shortdescrow.parent().parent()
+
   //firstrow.after('<table>' + shortdescrow + '</table>')
   firstrow.after(shortdescrow)
   shortdescrow = jQuery('#element\\.incident\\.short_description')
@@ -151,8 +154,8 @@ function openwatchlist(){
   kbbutton = shortdescrow.children().children('table').children().children().children('td').eq(1)
   kbbutton.css('padding','5px')
   kbbutton.insertBefore(descbox)
-  shortdescrow.wrap('<table />')
-//}
+  jQuery('#incident\\.section_header_spacer').css('height', '65px')
+}
 
 function noknowledgeredbar(){
     kbarticle = jQuery('#sys_original\\.incident\\.u_kb_article').attr('value');
@@ -160,6 +163,21 @@ function noknowledgeredbar(){
       jQuery('tr.header').css('background-color','red')
       jQuery('td.column_head').eq(2).children().first().before('<span style="padding-right:10px; word-wrap:break-word;">please attach a kb article</span>')
     }
+}
+
+function hidemarkasduplicate(){
+  jQuery('#duplicate_incident').hide()
+}
+
+function kbnumberattop(){
+  kbnumber = jQuery('#sys_display\\.incident\\.u_kb_article').attr('value')
+  shortdescrow = jQuery('#element\\.incident\\.short_description')
+  if ((kbnumber == "" || typeof kbnumber == "undefined")){
+    //shortdescrow.children().last().before('<td>'+'KB_ADD_ME'+'</td>')
+  }
+  else {
+    shortdescrow.children().last().before('<td>'+kbnumber+'</td>')
+  }
 }
 
 //Call it on pageload
@@ -170,7 +188,7 @@ jQuery(document).ready(function(){
 
     username = jQuery('#sys_display\\.incident\\.caller_id').attr('value');
     if (username == "" || typeof username == "undefined"){
-      ApplyDefaultTemplate();
+      //ApplyDefaultTemplate();
       removeassignedto();
     }
     if (!(username == "" || typeof username == "undefined")){
@@ -180,12 +198,13 @@ jQuery(document).ready(function(){
 
     monospacefont();
     assignkeystrokes();
-    //titletopbar();
-    //noknowledgeredbar();//this cannot come after openwatchlist() for some reason?
+    titletopbar();
+    hidemarkasduplicate();
+    moveshortdescriptionup();
+    kbnumberattop();
+
     openwatchlist();
 
-
-    //moveshortdescriptionup();
   }
   bluroutselfservice();
 
