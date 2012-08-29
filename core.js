@@ -147,6 +147,10 @@ function openwatchlist(){
   //firstrow.after('<table>' + shortdescrow + '</table>')
   firstrow.after(shortdescrow)
   shortdescrow = jQuery('#element\\.incident\\.short_description')
+  descbox = shortdescrow.children().children('table').children().children().children('td').eq(0)
+  kbbutton = shortdescrow.children().children('table').children().children().children('td').eq(1)
+  kbbutton.css('padding','5px')
+  kbbutton.insertBefore(descbox)
   shortdescrow.wrap('<table />')
 //}
 
