@@ -169,7 +169,7 @@ function hidemarkasduplicate(){
   jQuery('#duplicate_incident').hide()
 }
 
-function kbnumberattop(){
+function kbnumberonleft(){
   kbnumber = jQuery('#sys_display\\.incident\\.u_kb_article').attr('value')
   shortdescrow = jQuery('#element\\.incident\\.short_description')
   if ((kbnumber == "" || typeof kbnumber == "undefined")){
@@ -200,8 +200,8 @@ jQuery(document).ready(function(){
     assignkeystrokes();
     titletopbar();
     hidemarkasduplicate();
-    moveshortdescriptionup();
-    kbnumberattop();
+    //moveshortdescriptionup();
+    kbnumberonleft();
 
     openwatchlist();
 
