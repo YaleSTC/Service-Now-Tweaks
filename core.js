@@ -180,7 +180,7 @@ function kbnumberonleft(){
   }
 }
 
-function OnASearchPage(){
+function OnGlobalSearchPage(){
   return true
 }
 
@@ -194,6 +194,23 @@ function OnAKnowledgePage(){
 
 function OneKnowledgeResult(){
   return jQuery('.kb_header_title_row').parent().find('a.kblinked').size() == 1
+}
+
+function OnIncidentSearchPage(){
+  return true
+}
+
+function HighlightRows(){
+  jQuery('[record_class=incident]').each(function(){
+    row = jQuery(this)
+    row.children('td:contains("On Hold")').parent().children().css('background-color', 'violet')
+    rowupdated = row.children().last().text()
+    today = new Date
+    //if (today > Date.parse(rowupdated)) // if today is after when it was updated
+      //{
+      //alert('1')
+      //}
+  })
 }
 
 
@@ -226,8 +243,9 @@ jQuery(document).ready(function(){
   
   bluroutselfservice();
 
-  if (OnASearchPage()){
+  if (OnGlobalSearchPage()){
     if(OneTaskResult()){
+      //go to that one result
       location.href = jQuery('#group_8c58a5aa0a0a0b07008047e8ef0fe07d').find('a.formlink').attr('href')
     }
   }
@@ -235,8 +253,13 @@ jQuery(document).ready(function(){
 
   if (OnAKnowledgePage()){
     if(OneKnowledgeResult()){
+      //go to that one result
       location.href = jQuery('.kb_header_title_row').parent().find('a.kblinked').attr('href')
     }
+  }
+
+  if (OnIncidentSearchPage()){
+    HighlightRows()
   }
 
 })
