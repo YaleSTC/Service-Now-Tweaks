@@ -188,6 +188,14 @@ function OneTaskResult(){
     return (jQuery('#group_8c58a5aa0a0a0b07008047e8ef0fe07d:contains("1 match")').size() && jQuery('#group_8c59970e0a0a0b07013feb5e0d09c952:contains("No match")').size() && jQuery('#group_2b77ce594bd6c0d901b8fbe25ceff671:contains("No match")').size())
 }
 
+function OnAKnowledgePage(){
+  return true
+}
+
+function OneKnowledgeResult(){
+  return jQuery('.kb_header_title_row').parent().find('a.kblinked').size() == 1
+}
+
 
 //Call it on pageload
 jQuery(document).ready(function(){
@@ -221,6 +229,13 @@ jQuery(document).ready(function(){
   if (OnASearchPage()){
     if(OneTaskResult()){
       location.href = jQuery('#group_8c58a5aa0a0a0b07008047e8ef0fe07d').find('a.formlink').attr('href')
+    }
+  }
+
+
+  if (OnAKnowledgePage()){
+    if(OneKnowledgeResult()){
+      location.href = jQuery('.kb_header_title_row').parent().find('a.kblinked').attr('href')
     }
   }
 
