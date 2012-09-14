@@ -203,7 +203,8 @@ function OnIncidentSearchPage(){
 function HighlightRows(){
   jQuery('[record_class=incident]').each(function(){
     row = jQuery(this)
-    row.children('td:contains("On Hold")').parent().children().css('background-color', 'violet')
+    row.children('td:contains("On Hold")').parent('.list_even').children().css('background-color', '#ee82d4')
+    row.children('td:contains("On Hold")').parent('.list_odd').children().css('background-color', '#ee82ee')
     rowupdated = row.children().last().text()
     today = new Date
     //if (today > Date.parse(rowupdated)) // if today is after when it was updated
