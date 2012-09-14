@@ -1,7 +1,7 @@
 {
   "name": "STC Service Now Tweaks",
-  "version": "1.5.9",
-  "manifest_version": 24,
+  "version": "1.6",
+  "manifest_version": 25,
   "description": "STC-Specific modifications of Service Now.",
 
     "content_scripts": [{
